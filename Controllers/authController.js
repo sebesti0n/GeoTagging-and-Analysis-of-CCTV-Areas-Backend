@@ -1,4 +1,4 @@
-const db = require('knex')(require('../Configuration/knexfile')['development']);
+const db = require('knex')(require('../Configuration/DBConfig')['development']);
 
 exports.registration = (async (req,res)=> {
     const{Email,Name,ConfirmPassword,Password}=req;

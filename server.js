@@ -1,7 +1,7 @@
 const express = require('express')
 const authRoutes=require('./Routes/auth')
 const app= express();
-const knex = require('knex')(require('./Configuration/knexfile')['development']);
+const knex = require('knex')(require('./Configuration/DBConfig')['development']);
 const PORT = 3008;
 
 app.use(express.json());
