@@ -32,15 +32,15 @@ exports.login = (async (req,res) => {
     const email = req.query.email;
     const password = req.query.password;
     try {
-        const user = (await db('users')).
-        select('*')
+        const user = await db('users')
+        .select('*')
         .where('Email',email)
         .andWhere('Password',password);
         if(user.length>0){
             return res.status(200).json({success:true, message:"Login Successfully", user: user});
         }
         else{
-            return res.status(200).json({success:true, message:"wrong Credentials", user: null});
+            return res.status(200).json({success:true, message:"wrong Credentials or Registered First", user: null});
 
         }
     } catch (error) {
