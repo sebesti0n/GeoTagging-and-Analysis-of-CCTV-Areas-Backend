@@ -1,12 +1,13 @@
 const db = require('knex')(require('../Configuration/DBConfig')['development']);
 
+
+
+
 exports.registration = (async (req,res)=> {
-    const{Email,Name,ConfirmPassword,Password}=req;
+    const{Email,Name,ConfirmPassword,Password}=req.body;
     try {
         const findUser = await db('users')
-            .select('Name')
-            .where('Email',Email)
-            .andWhere('Password',Password);
+            .where('Email','=',Email).returning('*');
         if(findUser.length>0){
             return res.status(200).json({success:true, message:"Already Registered", user: null});
 
@@ -66,7 +67,7 @@ exports.adddetails = (async(req,res)=>{
         
     } catch (error) {
         console.log(error.message);
-        return res.status(403).json({success:false,message:"Failed to updated"});
+        return res.status(500).json({success:false,message:"Server Unavailable"});
         
     }
 });
