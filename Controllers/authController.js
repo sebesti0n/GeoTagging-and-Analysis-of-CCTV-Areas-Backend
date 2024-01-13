@@ -48,3 +48,27 @@ exports.login = (async (req,res) => {
         return res.status(400).json({success:false, message:error, user: null});
     }
 });
+
+exports.adddetails = (async(req,res)=>{
+    const{uid,addressLine1,city,state,phoneNumber,aadharNumber} = req;
+    try {
+        const userDetails = await db('users')
+        .update({
+            addressLine1:addressLine1,
+            city:city,
+            state:state,
+            phoneNumber:phoneNumber,
+            aadharNumber:aadharNumber
+        }).where('user_id',uid)
+        .returning('*');
+        console.log("user Details Added: ", userDetails);
+        return res.status(200).json({success:true, message:"User Details Updated"});
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(403).json({success:false,message:"Failed to updated"});
+        
+    }
+});
+
+
