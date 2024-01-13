@@ -19,5 +19,5 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema.alterTable('users', function(table){
     table.dropColumns(['addressLine1','city','state','phoneNumber','aadharNumber']);
-  })
+  });
 };
