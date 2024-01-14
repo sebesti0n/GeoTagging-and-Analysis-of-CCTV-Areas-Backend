@@ -31,8 +31,9 @@ exports.adminLogin = (async (req, res) => {
 exports.getCameras = (async (req, res) => {
     const  uid = req.query.uid;
     try {
+        const user = await db('users').where('user_id', '=', uid).returning('*');
         const cameras = await db('cameras').where('owner_id', '=', uid).returning('*');
-        return res.status(200).json({ success: true, message: "Camera List got Successfully", camera: cameras });
+        return res.status(200).json({ success: true, message: "Camera List got Successfully", camera: cameras , admin :user});
     } catch (error) {
         console.log(error.message)
         return res.status(500).json({ message: "Internal Server Error." })
