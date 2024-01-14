@@ -6,5 +6,5 @@ const validateMiddleware = require('../Middlewares/authenticationMiddleware');
 
 router.post('/login',adminController.adminLogin);
 router.get('/getCameras',validateMiddleware,adminController.getCameras);
-
+router.get('/camOwner',validateMiddleware,adminController.getCameraOwner);
 module.exports = router;

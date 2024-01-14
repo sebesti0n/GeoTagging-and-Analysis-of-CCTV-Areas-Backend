@@ -35,12 +35,22 @@ exports.adminLogin = (async (req, res) => {
 exports.getCameras = (async (req, res) => {
     const  uid = req.query.uid;
     try {
-        const user = await db('users').where('user_id', '=', uid).returning('*');
-        const cameras = await db('cameras').where('owner_id', '=', uid).returning('*');
-        return res.status(200).json({ success: true, message: "Camera List got Successfully", camera: cameras , admin :user});
+        const cameras = await db('cameras').returning('*');
+        return res.status(200).json({ success: true, message: "Camera List got Successfully", camera: cameras});
     } catch (error) {
         console.log(error.message)
         return res.status(500).json({ message: "Internal Server Error." })
 
     }
 });
+
+exports.getCameraOwner = ( async (req,res) => {
+    const uid = req.query.uid;
+    try {
+        const owner = await db('users').where('user_id','=',uid).returning('Name','phoneNumber','addressLine1','city','state');
+        return res.status(200).json({success:true,message:'Owner details got Successfully', owner:owner})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ message: "Internal Server Error." })
+    }
+})
