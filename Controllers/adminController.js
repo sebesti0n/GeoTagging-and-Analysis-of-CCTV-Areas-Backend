@@ -3,7 +3,11 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 exports.adminLogin = (async (req, res) => {
-    const { Email, Password } = req.body;
+    const {Email,Password} = req.body;
+    console.log(Email);
+    console.log(Password);
+    console.log(req);
+
     try {
         const user = await db('users').where('Email', '=', Email).returning('*');
         if (user.length > 0 && user[0].Password === Password && user[0].isAdmin === true) {
@@ -23,7 +27,7 @@ exports.adminLogin = (async (req, res) => {
         }
     } catch (error) {
 
-        console.log(error.message)
+        console.log(error)
         return res.status(500).json({ message: "Internal Server Error." })
     }
 
