@@ -15,7 +15,7 @@ exports.addCamera = (async(req,res)=>{
                     isLive:isLive
                 }).returning('*');
                 console.log("camera added ",cam);
-        return res.status(200).json({success:true,message:"Camera Successfully Added", camera:cam});
+        return res.status(200).json({success:true,message:"Camera Successfully Added"});
     } catch (error) {
         console.log(error.message);
         return res.status(500).json({success:false,message:"unknown Error"});
