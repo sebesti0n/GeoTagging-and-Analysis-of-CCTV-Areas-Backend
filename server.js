@@ -6,7 +6,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 const app= express();
 const knex = require('knex')(require('./Configuration/DBConfig')['development']);
-const PORT = 3008;
+const PORT = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
