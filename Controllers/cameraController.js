@@ -35,10 +35,10 @@ exports.getCamerasByOwnerId = ( async (req,res)=>{
 });
 
 exports.deleteCamera = ( async(req, res)=>{
-    const {camId} = req.body;
+    const {cam_id} = req;
     try{
         const cam = await db('cameras')
-            .where('cam_id', camId)
+            .where('cam_id', cam_id)
             .del()
             .returning('*');
 
