@@ -1,7 +1,7 @@
 const db = require('knex')(require('../Configuration/DBConfig')['development']);
 
 exports.addCamera = (async(req,res)=>{
-    const {owner_id,longitude,latitude,RTSP_Link,pov_direction,resolution,cameraName,isLive}=req.body;
+    const {owner_id,longitude,latitude,RTSP_Link,pov_direction,resolution,cameraName,isLive,xAddress,username,password}=req.body;
     try {
         const cam = await db('cameras')
                 .insert({
@@ -12,7 +12,10 @@ exports.addCamera = (async(req,res)=>{
                     resolution:resolution,
                     pov_direction:pov_direction,
                     RTSP_Link:RTSP_Link,
-                    isLive:isLive
+                    isLive:isLive,
+                    xAddress:xAddress,
+                    username:username,
+                    password:password
                 }).returning('*');
                 console.log("camera added ",cam);
         return res.status(200).json({success:true,message:"Camera Successfully Added"});

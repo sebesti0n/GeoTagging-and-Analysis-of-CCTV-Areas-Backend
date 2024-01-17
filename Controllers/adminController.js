@@ -2,6 +2,7 @@ const db = require('knex')(require('../Configuration/DBConfig')['development']);
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
+
 exports.adminLogin = (async (req, res) => {
     const {Email,Password} = req.body;
     console.log(Email);
@@ -53,4 +54,4 @@ exports.getCameraOwner = ( async (req,res) => {
         console.log(error)
         return res.status(500).json({ message: "Internal Server Error." })
     }
-})
+});
