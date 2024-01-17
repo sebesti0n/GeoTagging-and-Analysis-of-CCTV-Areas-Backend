@@ -56,7 +56,7 @@ exports.deleteCamera = ( async(req, res)=>{
 });
 
 exports.editCamera = async (req, res) => {
-    const { cam_id, owner_id, longitude, latitude, RTSP_Link, pov_direction, resolution, cameraName, isLive } = req.body;
+    const { cam_id, owner_id, longitude, latitude, RTSP_Link, pov_direction, resolution, cameraName, isLive,xAddress,username,password} = req.body;
 
     try {
         const updatedCamera = await db('cameras')
@@ -69,7 +69,10 @@ exports.editCamera = async (req, res) => {
                 pov_direction,
                 resolution,
                 cameraName,
-                isLive
+                isLive,
+                xAddress,
+                username,
+                password
             })
             .returning('*');
 
