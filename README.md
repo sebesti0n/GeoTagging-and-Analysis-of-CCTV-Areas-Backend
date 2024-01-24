@@ -36,7 +36,7 @@ This backend application serves as the central component responsible for handlin
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/rajasthan-police-hackathon-backend.git
+   git clone https://github.com/sebesti0n/GeoTagging-and-Analysis-of-CCTV-Areas-Backend.git
    cd rajasthan-police-hackathon-backend
    
 2. **Install Dependencies**
